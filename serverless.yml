@@ -18,3 +18,8 @@ functions:
       - http:
           method: GET
           path: /hello
+
+# added for teaching purposes only, not recommended in actual devrelopment
+custom:
+  bundle:
+    linting: false
