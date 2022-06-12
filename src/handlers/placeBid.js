@@ -45,7 +45,7 @@ async function placeBid(event, context) {
     throw new createError.Forbidden(`Your bid must be higher than ${auction.highestBid.amount}`)
   }
   
-  let updatedAuction;
+  let updatedAuction
   
   try {
     const result = await dynamodb.update(params).promise()
