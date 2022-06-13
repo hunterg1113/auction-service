@@ -18,7 +18,7 @@ export async function closeAuction(auction) {
 
   await dynamodb.update(params).promise()
 
-  const { title, sellerEmail, highestBid } = auction
+  const { title, seller, highestBid } = auction
   const { amount, bidder } = highestBid
 
   if(!bidder) {
@@ -26,7 +26,7 @@ export async function closeAuction(auction) {
       QueueUrl: process.env.MAIL_QUEUE_URL,
       MessageBody: JSON.stringify({
         subject: 'No bids on aution item :(',
-        recipient: sellerEmail,
+        recipient: seller,
         body: `Bummer! Your item "${title}" was not sold. Better luck next time.`
       })
     }).promise()
@@ -38,7 +38,7 @@ export async function closeAuction(auction) {
     QueueUrl: process.env.MAIL_QUEUE_URL,
     MessageBody: JSON.stringify({
       subject: 'Your item has been sold!',
-      recipient: sellerEmail,
+      recipient: seller,
       body: `Woohoo! Your item "${title}" has been sold for $${amount}.`
     })
   }).promise()

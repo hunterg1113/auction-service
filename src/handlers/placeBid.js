@@ -26,7 +26,7 @@ async function placeBid(event, context) {
   const auction = await getAuctionById(id)
 
   // Bid identity validation
-  if(auction.sellerEmail === email) {
+  if(auction.seller === email) {
     throw new createError.Forbidden(`You cannot place bids on your own auctions.`)
   }
   

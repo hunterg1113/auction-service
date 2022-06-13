@@ -16,7 +16,7 @@ export async function uploadAuctionPicture(event, context) {
   const auction = await getAuctionById(id)
   
   // Validate auction ownership
-  if(email !== auction.sellerEmail) {
+  if(email !== auction.seller) {
     throw new createError.Forbidden(`You cannot upload pictures to unowned auctions.`)
   }
 
