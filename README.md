@@ -3,6 +3,7 @@
 
 ## Tech used
 * AWS
+  * API Gateway
   * Lambda
   * DynamoDB 
   * S3 (image bucket)
